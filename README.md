@@ -11,14 +11,14 @@ The core application splits tracking and logging overhead across two cooperative
 * **Child Process (Information Logger):** Dedicated entirely to execution auditing. It operates asynchronously, receiving file information streams from the parent process over a dedicated IPC channel and flushing formatted logs to disk.
 * **IPC Lane (Unidirectional Pipe):** A single POSIX pipe coordinates the processes. The parent binds to the write-end (`pipefd[1]`) to transmit structured metadata blocks, while the child blocks on the read-end (`pipefd[0]`) waiting for payload ingest.
 
-### Process Topology & Data Stream
-'''text
+```text
   [ Parent Process: Scanner ] 
          |
          |---> (Metadata Stream) ---> [ POSIX Pipe (pipefd) ] ---> [ Child Process: Logger ]
          |                                                                  |
          v                                                                  v
   [ /src/ (Read Target) ] ---> [ /backup/ (Byte Copy) ]            [ /logs/report.txt ]
+```
 
 ## Software Component Matrix & Design
 
