@@ -2,9 +2,8 @@
 
 An automated, system-level Linux utility engineered to monitor a target directory, process file information asynchronously, and manage secure file backups. The application transitions away from resource-intensive sequential scanning by leveraging low-level POSIX system calls, a multi-process architecture via `fork()`, and unidirectional Inter-Process Communication (IPC) pipes.
 
----
 
-## 💻 System Architecture & Inter-Process Communication (IPC)
+## System Architecture & Inter-Process Communication (IPC)
 
 The core application splits tracking and logging overhead across two cooperative processes to maximize processing efficiency and maintain isolation boundaries:
 
