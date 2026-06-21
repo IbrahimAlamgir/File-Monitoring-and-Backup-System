@@ -12,7 +12,7 @@ The core application splits tracking and logging overhead across two cooperative
 * **IPC Lane (Unidirectional Pipe):** A single POSIX pipe coordinates the processes. The parent binds to the write-end (`pipefd[1]`) to transmit structured metadata blocks, while the child blocks on the read-end (`pipefd[0]`) waiting for payload ingest.
 
 ### Process Topology & Data Stream
-```text
+
   [ Parent Process: Scanner ] 
          |
          |---> (Metadata Stream) ---> [ POSIX Pipe (pipefd) ] ---> [ Child Process: Logger ]
